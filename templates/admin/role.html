@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <!-- Only required for left/right tabs -->
+<ul class="nav nav-tabs">
+  <li class="active">
+    <a href="#">首页</a>
+  </li>
+  <li><a href="#myModal" role="button" class="btn" data-toggle="modal">创建角色</a></li>
+ 
+</ul>
+    <div class="row-fluid sortable">		
+				<div class="span12">
+					
+						<h3><i class="icon-user"></i> 所有角色</h3>
+					
+				
+					<div class="box-content">
+					<form method="post" action="/admin/role/delete">
+					<div class="">
+					
+					<button  class="btn btn-danger" type="submit" ><i class="icon-trash icon-white"></i> 
+										删除</button>
+									     
+					</div>
+					 
+						<table class="table table-hover">
+						  <thead>
+							  <tr>
+							  <th>操作</th>
+								  <th>角色名</th>
+								  <th>创建日期</th>
+								  <th>描述</th>
+							      
+								  
+							  </tr>
+						  </thead>   
+						  <tbody>
+							{%for role in roles%}
+							<tr>
+								<td class="center">
+								 <input type="checkbox" name="roleID" id="inlineCheckbox1" value="{{role.id}}">
+									
+								</td>
+								<td>{{role.rolename}}</td>
+								<td class="center">{{role.add_time}}</td>
+								<td class="center">{{role.description}}</td>
+								 
+							
+							</tr>
+							{%end%}
+						  </tbody>
+					  </table>
+					         
+					</div>
+					</form>
+			</div>	
+ </div> 
+ 
+ 
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <form class="form-horizontal" method="post" action="/admin/role">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">新建角色</h3>
+  </div>
+  <div class="modal-body">
+    <div class="box-content">
+						
+						  <fieldset>
+							
+							<div class="control-group">
+							  <label class="control-label" for="username">角色名 </label>
+							  <div class="controls">
+								<input type="text" class="span6 typeahead" id="username" name="rolename">
+								<p class="help-block">角色名必须唯一</p>
+							  </div>
+							</div>
+							<div class="control-group">
+							  <label class="control-label" for="desc">角色描述</label>
+							  <div class="controls">
+								<textarea rows="5" name="desc" id="desc"></textarea>
+								 </div>
+							</div>
+							<h5>权限选择</h5>
+
+							<div class="control-group">
+							{%for privilege in privileges%}
+								<label class="checkbox inline">
+  								<input name="privilegeID" type="checkbox" id="inlineCheckbox1" value="{{privilege.id}}">{{privilege.operation+" "+privilege.resource}}
+								</label>
+							{%end%}
+							  </div>
+							<div class="form-actions">
+							  
+							</div>
+						  </fieldset>
+						 
+ 
+					</div>
+				
+
+	  
+   
+   
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+    <button type="submit" class="btn btn-primary">保存</button>
+  
+   
+  </div>
+ </form>  
+</div>
+
+{% end %}				
+					

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block body %}
+ <div class="box span6">
+ 
+					  
+							<form class="form-search" method="post" action="/admin/users">
+  <div class="input-append">
+    <input type="text" class="input-medium search-query" name="username">
+    <button type="submit" class="btn">搜索用户名</button>
+  </div>
+   
+</form>
+						
+					 
+					<div class="box-content">
+				
+<form method="post">
+<div class="">
+					
+					<button onclick="this.form.action='/admin/users/verify';this.form.submit()"  class="btn btn-warning" type="submit" ><i class="icon-trash icon-white"></i> 
+										审核通过</button>
+					<button onclick="this.form.action='/admin/users/delete';this.form.submit()" class="btn btn-danger" type="submit" ><i class="icon-edit"></i> 
+										删除</button>
+				   	<a href="/register?next=/admin/users" target="_blank" class="btn btn-success" type="submit" ><i class=" icon-user"></i> 
+										新建用户</a>			     
+					</div>
+						<table class="table table-condensed">
+							  <thead>
+								  <tr>
+								  <th>操作</th>
+									  <th>用户名</th>
+									  <th>注册时间</th>
+									  <th>角色</th>
+									  <th>状态</th>                                          
+								  </tr>
+							  </thead>   
+							  <tbody>
+								
+								{% if users %}
+            						{%for user in users%}
+            					
+            					
+								   <tr>
+								   <td class="center" >  <input type="checkbox" name="userID" id="inlineCheckbox1" value="{{user.id}}"></td>
+            					
+									<td>{{user.username}}</td>
+									<td class="center">{{user.add_time}}</td>
+									<td class="center">{{user.rolename}}</td>
+									<td class="center">
+										<span class="label label-success">{{'已审核' if user.status else '未审核'}}</span>
+									</td>  
+									</tr>
+								{%end%} 
+								{% else%}
+								 <tr>
+								 <td>
+								{{"抱歉,没有用户了"}} 
+								</td>  
+           						{% end %}
+								                                 
+								 </tr>
+								                         
+							  </tbody>
+						 </table>  
+						 </form>
+						<div class="pagination pagination-large">
+  <ul>
+    <li><a href="/admin/users?page={{current_page-1}}" class="{{'disabled'if current_page==0 else '' }}">Prev</a></li>
+ <li><a href="/admin/users?page={{current_page+1}}" class="{{''if users else 'disabled' }}">Next</a></li>
+  </ul>
+</div>
+					</div>
+				</div>
+{% end %}

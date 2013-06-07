@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block body %}
+  
+  <div class="row-fluid sortable">
+  <div class="span12">
+		 <form>			
+					<button onclick="this.form.action='/admin/post/verify';this.form.submit()" class="btn btn-danger" type="submit" ><i class="icon-trash icon-white"></i> 
+										审核通过</button>
+									     
+				 
+					<button onclick="this.form.action='/admin/post/top';this.form.submit()" class="btn btn-danger" type="submit" ><i class="icon-trash icon-white"></i> 
+										置顶</button>
+									     
+					 
+					<button onclick="this.form.action='/admin/post/delete';this.form.submit()" class="btn btn-danger" type="submit" ><i class="icon-trash icon-white"></i> 
+										删除</button>
+									     
+					
+					
+   <table class="table table-hover">
+						  <thead>
+							  <tr>
+							  <th>操作</th>
+								  <th>文章名</th>
+								  <th>描述</th>
+								  <th>创建日期</th>
+								   <th>是否置顶</th>
+							       <th>状态</th>
+								  
+							  </tr>
+						  </thead>   
+						  <tbody>
+							{%for entry in entries%}
+							<tr>
+								<td class="center">
+								 <input type="checkbox" name="entryID" id="inlineCheckbox1" value="{{entry.id}}">
+									
+								</td>
+								<td>{{entry.entryname}}</td>
+								<td class="center">{{entry.desc}}</td>
+								<td class="center">{{entry.add_time}}</td>
+								<td class="center">
+								{%if entry.istop==1%}
+								  是<a  class="btn btn-danger" href="/admin/post/canceltop?id={{entry.id}}"><i class="icon-trash icon-white"></i> 
+										取消</a>
+								{%else%}
+								否
+								{%end%}
+								</td>
+								 <td class="center">
+								 {%if entry.status==1%}
+								 审核通过<a  class="btn btn-danger" href="/admin/post/status?id={{entry.id}}"><i class="icon-trash icon-white"></i> 
+										取消</a>
+								{%else%}
+								未审核
+								{%end%}
+								</td>
+							
+							</tr>
+							{%end%}
+						  </tbody>
+					  </table>
+   
+   </form>
+   </div>
+     </div>
+{% end %}
