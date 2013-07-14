@@ -68,7 +68,7 @@
           callbacks: {
         onComplete: function(id, name, response) {
         file=document.getElementById('filename')
-             html="<input type='hidden' name='filename' value="+name+"/>"
+             html="<input type='hidden' name='fileid' value="+response['fileid']+">"
              file.innerHTML=html;
              //document.getElementById('fine-uploader').append("yes")
              console.log(response)

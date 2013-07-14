@@ -10,5 +10,19 @@
 
 </form>
 
+ <div class="row-fluid">
+ <ul>
+ {%if  matches%}
+     
+     {%for m in matches%}
+        <li>{{"%i: %i%% docid=%i [%s]" % (m.rank, m.percent, m.docid, m.document.get_data())}}</li>
+ 	 {%end%}
+ {%else%}
+      <li>No results</li>
+{%end%}
+ 
+ </ul>
+ 
+ </div>
 </div>
 {% end %}

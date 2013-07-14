@@ -5,6 +5,9 @@
     <table data-filter="#filter" class="footable">
       <thead>
         <tr>
+        <th data-class="expand" data-sort-initial="true">
+           名次
+          </th>
           <th data-class="expand" data-sort-initial="true">
            标题
           </th>
@@ -23,8 +26,9 @@
         </tr>
       </thead>
       <tbody>
-      {%for entry in entries%}
+      {%for  i,entry  in  enumerate(entries) %}
         <tr>
+        <td>{{i}}</td>
          <td><a target="_blank" href="/entry?id={{entry.id}}">Boudreaux</a></td>
         <td>{{entry.username}}</td>
         <td>{{entry.desc}}</td>

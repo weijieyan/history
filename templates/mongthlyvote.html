@@ -11,25 +11,33 @@
           <th>
              作者
           </th>
-          <th data-hide="phone,tablet">
+          <th data-hide="phone,tablet" width="500px">
            简介
           </th>
           <th data-hide="phone,tablet">
             地域
           </th>
           <th data-hide="phone">
-             阅读人数
+             票数
+          </th>
+          <th data-hide="phone,tablet">
+             投票
+          </th>
+          <th data-hide="phone,tablet">
+             下载
           </th>
         </tr>
       </thead>
       <tbody>
       {%for entry in entries%}
         <tr>
-         <td><a target="_blank" href="/entry?id={{entry.id}}">{{entry.entryname}}</a></td>
+         <td><a target="_blank" href="/entry/{{entry.id}}">{{entry.entryname}}</a></td>
         <td>{{entry.author}}</td>
         <td>{{entry.description}}</td>
         <td>{{entry.area}}</td>
         <td>{{entry.vote}}</td>
+        <td><a class="btn" href="/vote/{{current_user.id}}/{{entry.id}}">投票</a></td>
+        <td><a class="btn" href="/download/{{entry.fileid}}">下载</a></td>
         </tr>
       {%end%}
       </tbody>

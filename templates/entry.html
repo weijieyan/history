@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block body %}
+    
+    <div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span10">
+    <dl class="dl-horizontal">
+  <dt>标题</dt>
+  <dd>{{entry.entryname}}</dd>
+   <dt>作者</dt>
+  <dd>{{entry.author}}</dd>
+   <dt>地域</dt>
+  <dd>{{entry.area}}</dd>
+  
+   <dt>简介</dt>
+  <dd><p class="lead">{{entry.description}}</p></dd>
+</dl>
+     
+    </div>
+  <div class="span2">
+       <a class="btn" href="/download/{{entry.fileid}}">下载此文章</a>
+    </div>
+  </div>
+  
+</div>
+    
+   
+ 
+{% end %}
+{% block bottom %}
+ 
+{% end %}
